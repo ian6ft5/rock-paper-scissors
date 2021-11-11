@@ -371,19 +371,32 @@ function checkValidRound(round) {
 }
 
 function getGameWinner(){
+    if (checkValidRound(1) == false || checkValidRound(2) == false || checkValidRound(3) == false) {
+        return null;
+    }
+    
     let score1 = 0;
     let score2 = 0;
-    
-    for (let i = 0; i < 3; i++) {
-        if (getRoundWinner(i) == 'Player One') {
-            score1++;
-        } else if (getRoundWinner(i) == 'Player Two') {
-            score2++;
-        } else if (getRoundWinner(i) == 'Tie') {
-            continue;
-        } else {
-            return null;
-        }
+    let round1 = getRoundWinner(1);
+    let round2 = getRoundWinner(2);
+    let round3 = getRoundWinner(3);
+
+    if (round1 == 'Player One') {
+        score1++;
+    } else if (round1 == 'Player Two') {
+        score2++;
+    }
+
+    if (round2 == 'Player One') {
+        score1++;
+    } else if (round2 == 'Player Two') {
+        score2++;
+    }
+
+    if (round3 == 'Player One') {
+        score1++;
+    } else if (round3 == 'Player Two') {
+        score2++;
     }
 
     if (score1 > score2) {
@@ -394,6 +407,7 @@ function getGameWinner(){
         return 'Tie';
     }
 }
+
 
 function setComputerMoves(){
     //move type section
